@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: postgres
+    restart: on-failure
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    expose:
+      - ${POSTGRES_PORT}
+    command: -p ${POSTGRES_PORT}
+    env_file:
+      - .env
+    volumes:
+      - /opt/postgresql/data:/var/lib/postgresql/data
