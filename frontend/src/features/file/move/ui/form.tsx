@@ -51,7 +51,7 @@ export const FileMoveForm = ({ setRefetch, bucketName, fileName }: Props) => {
             <DialogTitle className="mb-4">Move File</DialogTitle>
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col p-2 w-full h-full">
               <Box className="mb-4">
-                <Input placeholder="Target Bucket name" {...register('targetBucket')} className="p-4" />
+                <Input placeholder="Target Folder name" {...register('targetBucket')} className="p-4" />
               </Box>
 
               <Box className="flex justify-center mt-4">
