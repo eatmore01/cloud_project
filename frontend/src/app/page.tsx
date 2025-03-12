@@ -21,8 +21,13 @@ const Page = async () => {
         <Box className="m-5 p-2">
           <p className="p-2 my-2 rounded-lg cursor-pointer">
             <Button variant={'link'}>
-              <Link href={routes.signIn} className="text-xl">
-                go to SignIn
+              <Link href={routes.login} className="text-xl">
+                Login
+              </Link>
+            </Button>
+            <Button variant={'link'}>
+              <Link href={routes.registr} className="text-xl">
+                Registration
               </Link>
             </Button>
           </p>

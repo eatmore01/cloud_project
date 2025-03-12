@@ -15,7 +15,16 @@ import {
 } from '@shared/ui'
 import { SidebarItem } from './sidebar-item'
 import { routes } from '@shared/constant'
-export const SideBar = ({ user }: { user: User | null | any }) => {
+import { UserAuth } from '@src/shared/api'
+import { isUserAuth } from '@src/shared/lib'
+export const SideBar = ({ user }: { user: User | UserAuth | null | any }) => {
+  const isAuthUser = isUserAuth(user) ? 'yes' : 'no'
+
+  const GithubUserButton = {
+    yes: <></>,
+    no: <GithubBtn userName={user.name} />,
+  }[isAuthUser]
+
   return (
     <Box className="flex flex-col w-full h-full">
       <header className="flex justify-between p-3 w-full">
@@ -31,7 +40,7 @@ export const SideBar = ({ user }: { user: User | null | any }) => {
               <DropdownMenuSeparator />
               <ProfileBtn />
               <DropdownMenuSeparator />
-              {user?.name ? <GithubBtn userName={user.name} /> : <></>}
+              {GithubUserButton}
               <DropdownMenuSeparator />
               <LogoutBtn />
             </DropdownMenuContent>

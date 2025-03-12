@@ -1,1 +1,1 @@
-import * as header from "./ui" 
+export * from './ui'

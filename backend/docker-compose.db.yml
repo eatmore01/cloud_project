@@ -2,12 +2,8 @@ services:
   postgres:
     image: postgres:17-alpine
     container_name: postgres
-    restart: on-failure
-    ports:
-      - ${POSTGRES_PORT}:${POSTGRES_PORT}
-    expose:
-      - ${POSTGRES_PORT}
-    command: -p ${POSTGRES_PORT}
+    restart: unless-stopped
+    network_mode: host
     env_file:
       - .env
     volumes:

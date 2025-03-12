@@ -72,7 +72,7 @@ export const BucketCreateForm = ({ setRefetch }: Props) => {
                     }}
                   >
                     <SelectTrigger className="w-[180px]">
-                      <SelectValue placeholder="Create public bucket?" />
+                      <SelectValue placeholder="Create public folder?" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectGroup>

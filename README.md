@@ -1,10 +1,17 @@
 
+### how to start
 
+### required
+
+- docker
+
+#### Start command
 ```bash
-docker compose -f dc.linux.yml
-
-docker compose -f dc.macos.yml
+docker compose up -d
 ```
 
+#### stop command
 
-- julCloud
+```bash
+docker compose down
+```

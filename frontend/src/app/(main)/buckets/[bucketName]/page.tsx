@@ -36,7 +36,7 @@ const Page = ({ params }: Props) => {
     <Box>
       <Box className="flex justify-between w-1/2">
         <h1 className="text-3xl justify-start m-5">
-          Files list in bucket <span className="text-gray-800 font-bold">{params.bucketName}</span>
+          Files list in Folder <span className="text-gray-800 font-bold">{params.bucketName}</span>
         </h1>
         <FileUploadButton classes="text-xl p-4 my-2 mb-0" />
         <FileUploadForm setRefetch={setRefetchIndex} bucketName={params.bucketName} />

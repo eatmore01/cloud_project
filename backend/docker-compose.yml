@@ -1,36 +1,21 @@
 services:
-  nest_backend:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: backend
+  backend:
+    image: cloud-back:nest-auth
     restart: unless-stopped
+    network_mode: host
+    depends_on:
+      - postgres
     env_file:
       - .env
+    working_dir: /usr/src/app
+
+
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
     ports:
-      - "3000:3000"
-    expose:
-      - 3000
-
-  # nest_backend:
-  #   image: back:prod
-  #   container_name: backend
-  #   restart: unless-stopped
-  #   env_file:
-  #     - .env
-  #   ports:
-  #     - "3000:3000"
-
-  # postgres:
-  #   user: postgres
-  #   image: postgres:17-alpine
-  #   restart: always
-  #   expose:
-  #     - ${POSTGRES_PORT}
-  #   command: -p ${POSTGRES_PORT}
-  #   env_file:
-  #     - .env
-  #   ports:
-  #     - ${POSTGRES_PORT}:${POSTGRES_PORT}
-  #   volumes:
-  #     - /opt/postgresql/data:/var/lib/postgresql/data
+      - "5432:5432"
+    env_file:
+      - .env
+    volumes:
+      - /opt/postgresql/data:/var/lib/postgresql/data

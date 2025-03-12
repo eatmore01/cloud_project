@@ -35,7 +35,7 @@ const Page = () => {
   return (
     <Box>
       <Box className="flex justify-between w-1/2">
-        <h1 className="text-5xl justify-start m-5">Buckets List</h1>
+        <h1 className="text-5xl justify-start m-5">Folders List</h1>
         <BucketCreateButton classes="text-2xl p-6 m-2 mb-0" />
         <BucketCreateForm setRefetch={setRefetchIndex}></BucketCreateForm>
       </Box>
@@ -67,7 +67,7 @@ const Page = () => {
         </ul>
       ) : (
         <Box className="flex justify-center items-center h-full">
-          <span className="text-gray-800 font-bold text-7xl">Files not found.</span>
+          <span className="text-gray-800 font-bold text-7xl">Folders not found.</span>
         </Box>
       )}
     </Box>

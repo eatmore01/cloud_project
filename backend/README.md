@@ -20,14 +20,26 @@ $ npm run start:prod
 ```
 
 
+### only once
 
-# Up
+```bash
+npx prisma migrate dev --name main
+```
+
+```bash
+npx prisma migrate deploy
+```
+
+```bash
+npx prisma migrate reset # delete all data and migration
+```
+
+### Up
 
 1) 
 ```bash
 mv .env.example .env
 ```
-
 2)
 ```bash
 docker compose up -d
