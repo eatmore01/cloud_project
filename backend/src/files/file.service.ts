@@ -91,4 +91,29 @@ export class FileService {
       throw new Error(`Failed to move file: ${error.message}`);
     }
   }
+
+  // rename file
+  async renameFile(
+    bucketName: string,
+    oldFileName: string,
+    newFileName: string,
+  ) {
+    try {
+      await this.minioClient.copyObject(
+        bucketName,
+        newFileName,
+        `${bucketName}/${oldFileName}`,
+      );
+
+      await this.minioClient.removeObject(bucketName, oldFileName);
+
+      return {
+        message: 'File renamed successfully',
+        fileName: newFileName,
+      };
+    } catch (error) {
+      console.error(`Error during file rename: ${error.message}`);
+      throw new Error(`Failed to rename file: ${error.message}`);
+    }
+  }
 }

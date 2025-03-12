@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-export type ModalType = 'bucketCreate' | 'deleteDialog' | 'fileMove' | 'fileUpload'
+export type ModalType = 'bucketCreate' | 'deleteDialog' | 'fileMove' | 'fileUpload' | 'fileRename'
 
 interface ModalStoreState {
   isOpen: boolean

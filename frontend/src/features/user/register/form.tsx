@@ -14,7 +14,7 @@ import Cookies from 'js-cookie'
 import { useUserStore } from '@src/entities/user'
 
 export const RegisterForm = () => {
-  const { handleSubmit, register, reset } = useUserCreateFormModel()
+  const { handleSubmit, register, reset, formState } = useUserCreateFormModel()
   const { addUser } = useUserStore()
   const router = useRouter()
 
@@ -36,6 +36,8 @@ export const RegisterForm = () => {
 
       toast(response.message)
 
+      reset()
+
       router.push(routes.buckets)
     } else {
       toast(response.message)
@@ -55,6 +57,7 @@ export const RegisterForm = () => {
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center justify-center">
         <h2 className="text-xl mb-4 text-foreground">Registration</h2>
         <Box>
+          {formState.errors.name && <p className="text-red-500">{formState.errors.name.message}</p>}
           <Input
             placeholder="Name"
             className="w-full p-2 mb-4 rounded bg-gray-800 shadow focus:shadow-outline-white"
@@ -62,6 +65,7 @@ export const RegisterForm = () => {
               required: 'This field is required',
             })}
           />
+          {formState.errors.email && <p className="text-red-500">{formState.errors.email.message}</p>}
           <Input
             type="email"
             placeholder="Email"
@@ -70,6 +74,7 @@ export const RegisterForm = () => {
               required: 'This field is required',
             })}
           />
+          {formState.errors.password && <p className="text-red-500">{formState.errors.password.message}</p>}
           <Input
             type="password"
             placeholder="Password"

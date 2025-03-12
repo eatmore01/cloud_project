@@ -1,5 +1,6 @@
 'use client'
-import { Atom, LucidePaintBucket, PaintBucketIcon } from 'lucide-react'
+
+import { Folder } from 'lucide-react'
 
 import { UserSideBarPreview, UserSideBarPreviewSkeleton, User } from '@entities/user'
 import { GithubBtn, LogoutBtn, ProfileBtn } from '@features/user'
@@ -17,6 +18,7 @@ import { SidebarItem } from './sidebar-item'
 import { routes } from '@shared/constant'
 import { UserAuth } from '@src/shared/api'
 import { isUserAuth } from '@src/shared/lib'
+
 export const SideBar = ({ user }: { user: User | UserAuth | null | any }) => {
   const isAuthUser = isUserAuth(user) ? 'yes' : 'no'
 
@@ -51,7 +53,7 @@ export const SideBar = ({ user }: { user: User | UserAuth | null | any }) => {
 
       <Box>
         <Box className="p-4">
-          <SidebarItem Icon={<PaintBucketIcon size={25} className="mr-2" />} title="Buckets" route={routes.buckets} />
+          <SidebarItem Icon={<Folder size={25} className="mr-2" />} title="Folders" route={routes.buckets} />
         </Box>
       </Box>
     </Box>

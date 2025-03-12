@@ -1,5 +1,5 @@
 import { api } from '@shared/api/instance'
-import { fileUrlPrefix, moveFileUrlPrefix } from '@src/shared/constant'
+import { fileUrlPrefix, moveFileUrlPrefix, renameFileUrlPrefix } from '@src/shared/constant'
 
 export interface FileObj {
   name: string
@@ -26,6 +26,12 @@ interface MoveFile {
   bucketname: string
   targetBucket: string
   filename: string
+}
+
+interface RenameFile {
+  bucketname: string
+  filename: string
+  newFilename: string
 }
 
 interface DeleteFileByBucketAndName {
@@ -88,6 +94,19 @@ export const moveFile = async ({ bucketname, targetBucket, filename }: MoveFile)
   try {
     const response = await api.post<any>(`/${moveFileUrlPrefix}/${bucketname}/${filename}`, {
       targetBucket,
+    })
+    return response.data
+  } catch (error: any) {
+    console.error('Failed to move file:', error)
+    return { message: undefined, error: error }
+  }
+}
+
+// Function to move a file
+export const renameFile = async ({ bucketname, filename, newFilename }: RenameFile): Promise<any> => {
+  try {
+    const response = await api.post<any>(`/${renameFileUrlPrefix}/${bucketname}/${filename}`, {
+      newFilename: newFilename,
     })
     return response.data
   } catch (error: any) {

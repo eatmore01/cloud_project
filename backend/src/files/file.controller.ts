@@ -13,7 +13,8 @@ import { Response } from 'express';
 import { FileService } from './file.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiBody } from '@nestjs/swagger';
-import { MoveFileDto } from './dto/dto';
+import { MoveFileDto, RenameFileDto } from './dto/dto';
+import { log } from 'console';
 
 @Controller('files')
 export class FileController {
@@ -82,6 +83,27 @@ export class FileController {
         bucketname,
         targetBucket,
         filename,
+      );
+      res.json(result);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+
+  @Post('/rename/:bucketname/:filename')
+  @ApiBody({ type: RenameFileDto })
+  async renameFile(
+    @Param('bucketname') bucketname: string,
+    @Param('filename') filename: string,
+    @Body('newFilename') newFilename: string,
+    @Res() res: Response,
+  ) {
+    log(bucketname, filename, newFilename);
+    try {
+      const result = await this.fileService.renameFile(
+        bucketname,
+        filename,
+        newFilename,
       );
       res.json(result);
     } catch (error) {

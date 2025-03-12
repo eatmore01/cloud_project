@@ -4,11 +4,12 @@ import { Box, Button } from '@shared/ui'
 import { FileDeleteButton } from '@src/features/file/delete'
 import { FileDownloadButton } from '@src/features/file/download'
 import { FileMoveButton, FileMoveForm } from '@src/features/file/move'
+import { FileRenameButton, FileRenameForm } from '@src/features/file/rename'
 import { FileUploadButton, FileUploadForm } from '@src/features/file/upload'
 import { FileObj, getFilesByBucket } from '@src/shared/api'
 import { routes } from '@src/shared/constant'
 import { formatDate } from '@src/shared/lib'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 interface Props {
   params: { bucketName: string }
@@ -43,8 +44,8 @@ const Page = ({ params }: Props) => {
       </Box>
       {files.length > 0 ? (
         <ul>
-          {files.map((file: FileObj) => (
-            <li key={file.etag} className="m-5 p-2 border border-gray-700 flex justify-between rounded-md">
+          {files.map((file: FileObj, index) => (
+            <li key={index} className="m-5 p-2 border border-gray-700 flex justify-between rounded-md">
               <Box>
                 <Box className="text-xl p-2 m-3 flex flex-col items-start">
                   <div>

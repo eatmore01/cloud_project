@@ -15,7 +15,7 @@ import { toast } from 'sonner'
 import { useUserStore } from '@src/entities/user'
 
 export const LoginForm = () => {
-  const { handleSubmit, register, reset } = useUserLoginFormModel()
+  const { handleSubmit, register, reset, formState } = useUserLoginFormModel()
   const router = useRouter()
 
   const { addUser } = useUserStore()
@@ -38,6 +38,8 @@ export const LoginForm = () => {
 
       toast(response.message)
 
+      reset()
+
       router.push(routes.buckets)
     } else {
       toast(response.message)
@@ -57,6 +59,7 @@ export const LoginForm = () => {
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col items-center justify-center">
         <h2 className="text-xl mb-4 text-foreground">Login</h2>
         <Box>
+          {formState.errors.email && <p className="text-red-500">{formState.errors.email.message}</p>}
           <Input
             type="email"
             placeholder="Email"
@@ -65,6 +68,7 @@ export const LoginForm = () => {
               required: 'This field is required',
             })}
           />
+          {formState.errors.password && <p className="text-red-500">{formState.errors.password.message}</p>}
           <Input
             type="password"
             placeholder="Password"
