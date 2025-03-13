@@ -7,11 +7,11 @@ import { NestMinioModule } from 'nestjs-minio';
   imports: [
     NestMinioModule.register({
       isGlobal: true,
-      endPoint: '165.232.95.114',
-      port: 9000,
+      endPoint: process.env.MINIO_HOST || '165.232.95.114',
+      port: Number(process.env.MINIO_PORT) || 9000,
       useSSL: false,
-      accessKey: 'minio_test',
-      secretKey: 'password123',
+      accessKey: process.env.MINIO_ACCESS_KEY || 'minio_test',
+      secretKey: process.env.MINIO_SECRET_KEY || 'password123',
     }),
   ],
 })
