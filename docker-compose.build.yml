@@ -1,6 +1,8 @@
 services:
   backend:
-    image: cloud-back:nest-auth
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     restart: unless-stopped
     network_mode: host
     depends_on:
@@ -21,7 +23,9 @@ services:
       - /opt/postgresql/data:/var/lib/postgresql/data
 
   frontend:
-    image: cloud-front:next
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     restart: unless-stopped
     network_mode: host
     depends_on:
